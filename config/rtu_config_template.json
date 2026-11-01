@@ -1,0 +1,1 @@
+{"rtu":"SCADAPack 474","protocol":"DNP3","dnp3":{"address":10,"master":1,"unsolicited":true,"classes":[1,2,3],"confirm_timeout_ms":5000},"analog":{"range_ma":[4,20],"eng_lo":0,"eng_hi":10,"clamp":true,"fault_below_ma":3.8},"network":{"apn":"scada.example.apn","keepalive_s":60}}
