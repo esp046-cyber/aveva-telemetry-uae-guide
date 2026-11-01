@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 220" font-family="sans-serif" font-size="12"><rect width="560" height="220" fill="#0a1119"/>
+<g stroke="#e9eef3" fill="none" stroke-width="2"><rect x="20" y="70" width="90" height="80" fill="#14202d"/><rect x="235" y="70" width="90" height="80" fill="#14202d"/><rect x="450" y="70" width="90" height="80" fill="#14202d"/>
+<path d="M110 95H235M325 95H450" stroke="#e8a33d"/><path d="M110 125H235M325 125H450" stroke="#5fc59a"/></g>
+<g fill="#e9eef3"><text x="38" y="115">Master</text><text x="250" y="115">Slave 2</text><text x="462" y="115">Slave N</text>
+<text x="150" y="88" fill="#e8a33d">D+ (A/B varies)</text><text x="150" y="142" fill="#5fc59a">D- </text>
+<text x="20" y="25" font-size="14">RS-485 daisy chain, no stubs, no star</text>
+<text x="20" y="180">Bias: ~680 ohm D+ to +5V, D- to 0V, at ONE point only (master).</text><text x="20" y="200">120 ohm terminator across D+/D- at BOTH physical ends. Shield earthed at one end.</text></g>
+<g stroke="#e8a33d" fill="none" stroke-width="2"><rect x="30" y="165" width="0" height="0"/></g>
+<text x="468" y="60" fill="#e8a33d">120R</text><text x="22" y="60" fill="#e8a33d">120R</text></svg>

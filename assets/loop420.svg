@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 220" font-family="sans-serif" font-size="12"><rect width="560" height="220" fill="#0a1119"/>
+<g stroke="#e9eef3" fill="#14202d" stroke-width="2"><rect x="20" y="60" width="110" height="80"/><rect x="225" y="60" width="110" height="80"/><rect x="430" y="60" width="110" height="80"/></g>
+<g stroke="#e8a33d" fill="none" stroke-width="2"><path d="M130 85H225M335 85H430M430 120H400V175H75V140M130 120H180V175"/></g>
+<g fill="#e9eef3"><text x="20" y="25" font-size="14">2-wire loop: 24 VDC supply, transmitter, RTU AI</text><text x="40" y="105">24 VDC</text><text x="40" y="122">supply</text><text x="245" y="105">Passive</text><text x="245" y="122">transmitter</text><text x="445" y="105">RTU AI</text><text x="445" y="122">(250R shunt)</text>
+<text x="20" y="200">Percent = (mA - 4) / 16. 12 mA = 50%. Below 3.8 mA = wire break fault.</text><text x="20" y="215">Earth the loop at ONE point; use isolators if sensor body is earthed.</text></g></svg>

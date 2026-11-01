@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none"><defs><style>.i{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}</style></defs>
+<symbol id="rtu" viewBox="0 0 24 24"><rect class="i" x="4" y="3" width="16" height="18" rx="2"/><circle cx="9" cy="9" r="1.5"/><circle cx="15" cy="9" r="1.5"/><path class="i" d="M8 16h8"/></symbol>
+<symbol id="sensor" viewBox="0 0 24 24"><circle class="i" cx="12" cy="9" r="5"/><path class="i" d="M12 14v8M9 22h6M12 6v3l2 2"/></symbol>
+<symbol id="solenoid-valve" viewBox="0 0 24 24"><path class="i" d="M2 12l8-5v10zM22 12l-8-5v10z"/><path class="i" d="M12 12V5M8 5h8"/></symbol>
+<symbol id="modbus-chain" viewBox="0 0 24 24"><rect class="i" x="2" y="8" width="5" height="8"/><rect class="i" x="9.5" y="8" width="5" height="8"/><rect class="i" x="17" y="8" width="5" height="8"/><path class="i" d="M7 12h2.5M14.5 12H17"/></symbol>
+<symbol id="antenna" viewBox="0 0 24 24"><path class="i" d="M12 22V10M7 6a7 7 0 0 1 10 0M4 3a11 11 0 0 1 16 0"/></symbol>
+<symbol id="shield" viewBox="0 0 24 24"><path class="i" d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><path class="i" d="M9 12l2 2 4-4"/></symbol></svg>
