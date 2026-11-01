@@ -104,13 +104,19 @@ const TIPS=[
 const FILES=["index.html","style.css","script.js","manifest.json","service-worker.js","offline.html","favicon.ico","icon-192.png","icon-512.png","README.md",".gitignore","package.json",".env.example","LICENSE","robots.txt","sitemap.xml","browserconfig.xml","assets/og-image.png","assets/og-image.svg","assets/icons.svg","assets/rs485.svg","assets/loop420.svg","screenshots/mobile.png","tests/app.test.js","docs/dnp3-quick-ref.md","docs/modbus-troubleshooting.md","docs/uae-desc-compliance.md","docs/dnp3-sav5.md","docs/mqtt-sparkplug.md","docs/utility-metering-reference.md","docs/scadapack-hardware-matrix.md","api/sample-points.json","backend/edge_collector.py","database/points_schema.sql","config/rtu_config_template.json"];
 const $=s=>document.querySelector(s);
 const store={get(){try{return JSON.parse(localStorage.getItem("fav")||"[]")}catch(e){return[]}},set(v){try{localStorage.setItem("fav",JSON.stringify(v))}catch(e){}}};
+const TAG=["geo","dnp3","modbus","power","site","cell","sec","comm"],LAB=["Geo SCADA","DNP3","Modbus","Power/Loop","UAE Site","Cellular","Security","Commissioning"];
 function searchTips(q,cat,favOnly,favs){q=(q||"").toLowerCase();return TIPS.map((t,i)=>({t,i})).filter(({t,i})=>(cat<0||t[0]===cat)&&(!favOnly||favs.includes(i))&&(t[1]+" "+t[2]+" "+(t[3]||"")+" "+CATS[t[0]]).toLowerCase().includes(q))}
-let cat=-1;
-function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
-function render(){const f=store.get(),r=searchTips($("#q").value,cat,$("#fav").checked,f);$("#count").textContent=r.length+" of "+TIPS.length+" tips";
-$("#list").innerHTML=r.map(({t,i})=>`<article class="tip"><button class="star" data-i="${i}" aria-label="Bookmark">${f.includes(i)?"★":"☆"}</button><h3>${esc(t[1])}</h3><div class="c">${CATS[t[0]]}</div><p>${esc(t[2])}</p>${t[3]?`<pre>${esc(t[3])}</pre>`:""}</article>`).join("")||"<p>No tips match. Clear the search or the category.</p>"}
-function chips(){$("#chips").innerHTML=["All",...CATS].map((c,i)=>`<button class="chip" aria-pressed="${cat===i-1}" data-c="${i-1}">${c}</button>`).join("")}
-function thermal(){const a=+$("#amb").value,p=a+24;$("#ambv").textContent=a;$("#panv").textContent=p;$("#derate").textContent=p>=70?"Derate PSU/CPU now, check cooling":p>=60?"Watch PSU loading":"Derating: none"}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+let cat=-1,tab="all",pad=false,tt;
+function toast(){const t=$("#toast");t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),1600)}
+async function copy(x){try{await navigator.clipboard.writeText(x)}catch(e){const a=document.createElement("textarea");a.value=x;document.body.appendChild(a);a.select();try{document.execCommand("copy")}catch(_){}a.remove()}toast()}
+function render(){const f=store.get(),saved=tab==="saved",r=searchTips($("#q").value,cat,saved,f);$("#count").textContent=r.length+" of "+TIPS.length+" tips"+(saved?" (bookmarked)":"");
+$("#list").innerHTML=r.map(({t,i})=>`<article class="card" data-i="${i}"><button class="hd" aria-expanded="false"><span class="tag t-${TAG[t[0]]}">${LAB[t[0]]}</span><span class="ti">${esc(t[1])}</span><svg class="chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button><div class="bd"><p>${esc(t[2])}</p>${(t[3]||"").split("\n").filter(Boolean).map(l=>`<div class="cb"><code>${esc(l)}</code><button class="cp">Copy</button></div>`).join("")}<button class="sv">${f.includes(i)?"★ Saved":"☆ Save"}</button></div></article>`).join("")||"<p>"+(saved?"No bookmarks yet. Open a tip and tap Save.":"No tips match. Clear the search or filter.")+"</p>"}
+function setTab(t){tab=t;document.querySelectorAll(".seg button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===t));const list=t==="all"||t==="saved";$("#v-list").hidden=!list;$("#v-maps").hidden=t!=="maps";$("#v-tools").hidden=t!=="tools";$("#drawer").hidden=!list;if(list)render();scrollTo(0,0)}
+function calc(){const base=+$("#mb").value,first=+$("#mf").value||base,n=Math.max(1,Math.min(+$("#mn").value||1,40)),st=pad?4:2,fc=base===30001?"04":"03";let h="<table><tr><th>#</th><th>Listed</th><th>Wire</th><th>Hex</th><th>Read</th></tr>";for(let k=0;k<n;k++){const l=first+k*st,w=l-base;h+=`<tr><td>${k+1}</td><td>${l}</td><td>${w}</td><td>0x${(w<0?0:w).toString(16).toUpperCase().padStart(4,"0")}</td><td>FC${fc} x2</td></tr>`}$("#mo").innerHTML=h+"</table>"}
+function fl(){const v=parseFloat($("#fv").value);if(isNaN(v)){$("#fo").textContent="Enter a number";return}const d=new DataView(new ArrayBuffer(4));d.setFloat32(0,v);const a=d.getUint16(0).toString(16).toUpperCase().padStart(4,"0"),b=d.getUint16(2).toString(16).toUpperCase().padStart(4,"0");$("#fo").textContent="ABCD: "+a+" "+b+"   CDAB (word swapped): "+b+" "+a}
+function dc(){const w=$("#hw").value.trim().split(/[\s,]+/).map(x=>parseInt(x,16));if(w.length<2||w.some(isNaN)){$("#ho").textContent="Enter two hex words";return}const g=(x,y)=>{const d=new DataView(new ArrayBuffer(4));d.setUint16(0,x);d.setUint16(2,y);return d.getFloat32(0)};$("#ho").textContent="As ABCD: "+g(w[0],w[1])+"   As CDAB: "+g(w[1],w[0])}
+function thermal(){const a=+$("#amb").value,p=a+24;$("#ambv").textContent=a;$("#panv").textContent=p;$("#derate").textContent=p>=70?"Derate PSU/CPU now and check cooling.":p>=60?"Watch PSU loading.":"No derating needed."}
 function crc(b){let t=crc.t;if(!t){t=crc.t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}}let r=-1;for(const x of b)r=t[(r^x)&255]^(r>>>8);return(r^-1)>>>0}
 async function exportZip(){const enc=new TextEncoder(),parts=[],cen=[];let off=0;$("#zs").textContent="Packing...";
 for(const f of FILES){const d=new Uint8Array(await(await fetch(f)).arrayBuffer()),n=enc.encode(f),c=crc(d);
@@ -119,8 +125,17 @@ const e=new DataView(new ArrayBuffer(46));e.setUint32(0,0x02014b50,true);e.setUi
 const cl=cen.reduce((a,b)=>a+b.byteLength,0),z=new DataView(new ArrayBuffer(22));z.setUint32(0,0x06054b50,true);z.setUint16(8,FILES.length,true);z.setUint16(10,FILES.length,true);z.setUint32(12,cl,true);z.setUint32(16,off,true);
 const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([...parts,...cen,z.buffer],{type:"application/zip"}));a.download="aveva-telemetry-guide.zip";a.click();$("#zs").textContent="Done"}
 if(typeof document!=="undefined"&&$("#list")){
-$("#q").oninput=render;$("#fav").onchange=render;$("#amb").oninput=thermal;$("#zip").onclick=()=>exportZip().catch(e=>$("#zs").textContent="Failed: "+e.message);
-$("#chips").onclick=e=>{const c=e.target.dataset.c;if(c!==undefined){cat=+c;chips();render()}};
-$("#list").onclick=e=>{const i=e.target.dataset.i;if(i===undefined)return;let f=store.get();f=f.includes(+i)?f.filter(x=>x!==+i):[...f,+i];store.set(f);render()};
+$("#chips").innerHTML=["All",...CATS].map((c,i)=>`<button class="chip" aria-pressed="${i===0}" data-c="${i-1}">${c}</button>`).join("");
+$("#chips").onclick=e=>{const c=e.target.dataset.c;if(c===undefined)return;cat=+c;document.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.c===cat));render()};
+$("#ft").onclick=()=>{const o=$("#chips").hidden;$("#chips").hidden=!o;$("#ft").setAttribute("aria-expanded",o)};
+$("#q").oninput=render;document.querySelector(".seg").onclick=e=>{if(e.target.dataset.tab)setTab(e.target.dataset.tab)};
+$("#list").onclick=e=>{const card=e.target.closest(".card");if(!card)return;
+if(e.target.closest(".hd")){const o=card.classList.toggle("open");card.querySelector(".hd").setAttribute("aria-expanded",o)}
+else if(e.target.classList.contains("cp"))copy(e.target.previousElementSibling.textContent);
+else if(e.target.classList.contains("sv")){const i=+card.dataset.i;let f=store.get();f=f.includes(i)?f.filter(x=>x!==i):[...f,i];store.set(f);e.target.textContent=f.includes(i)?"★ Saved":"☆ Save";if(tab==="saved")render()}};
+["#mb","#mf","#mn"].forEach(s=>$(s).oninput=calc);$("#mb").onchange=()=>{$("#mf").value=$("#mb").value;calc()};
+$("#m2").onclick=$("#m4").onclick=e=>{pad=e.currentTarget.id==="m4";$("#m2").setAttribute("aria-pressed",!pad);$("#m4").setAttribute("aria-pressed",pad);calc()};
+$("#fv").oninput=fl;$("#hw").oninput=dc;$("#amb").oninput=thermal;
+$("#zip").onclick=()=>exportZip().catch(e=>$("#zs").textContent="Failed: "+e.message);
 const net=()=>{document.body.classList.toggle("off",!navigator.onLine);$("#net").textContent=navigator.onLine?"online":"offline (cached)"};addEventListener("online",net);addEventListener("offline",net);net();
-chips();thermal();render();if("serviceWorker"in navigator)navigator.serviceWorker.register("service-worker.js")}
+calc();fl();thermal();render();if("serviceWorker"in navigator)navigator.serviceWorker.register("service-worker.js")}
