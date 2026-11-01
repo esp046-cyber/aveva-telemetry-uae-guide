@@ -1,0 +1,1 @@
+{"site":"Demo-ETS-01","points":[{"id":"AI001","name":"Supply Temp","unit":"degC","value":6.2},{"id":"AI002","name":"Return Temp","unit":"degC","value":13.1},{"id":"DI001","name":"Pump 1 Run","value":1},{"id":"CT001","name":"BTU Energy","unit":"kWh","value":128450}]}
