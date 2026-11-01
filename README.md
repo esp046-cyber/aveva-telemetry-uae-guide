@@ -1,4 +1,4 @@
-#  AVEVA Telemetry Field Engineering Guide (UAE Edition)
+# AVEVA Telemetry Field Engineering Guide (UAE Edition)
 Offline PWA with searchable field tips for SCADA engineers in Dubai and the Northern Emirates. No build step, no Node.js.
 
 ## Upload to GitHub from an iPhone (Safari only)
@@ -14,3 +14,6 @@ GitHub's website will not unzip a ZIP, and Safari uploads can lose folder paths.
 
 ## Add tips
 Edit the `TIPS` array in `script.js`: `[categoryIndex, title, body, code]`.
+
+## Deploy with GitHub Actions
+The ZIP includes `.github/workflows/pages.yml`. In the repo go to **Settings > Pages > Source: GitHub Actions**, then push once. Runs queue instead of colliding. Hidden files (`.github`, `.gitignore`, `.env.example`) are not served by Pages, so the in-app ZIP export leaves them out; use this ZIP for the complete set.

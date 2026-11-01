@@ -119,10 +119,10 @@ function dc(){const w=$("#hw").value.trim().split(/[\s,]+/).map(x=>parseInt(x,16
 function thermal(){const a=+$("#amb").value,p=a+24;$("#ambv").textContent=a;$("#panv").textContent=p;$("#derate").textContent=p>=70?"Derate PSU/CPU now and check cooling.":p>=60?"Watch PSU loading.":"No derating needed."}
 function crc(b){let t=crc.t;if(!t){t=crc.t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}}let r=-1;for(const x of b)r=t[(r^x)&255]^(r>>>8);return(r^-1)>>>0}
 async function exportZip(){const enc=new TextEncoder(),parts=[],cen=[];let off=0;$("#zs").textContent="Packing...";
-for(const f of FILES){const d=new Uint8Array(await(await fetch(f)).arrayBuffer()),n=enc.encode(f),c=crc(d);
+let cnt=0;for(const f of FILES){const rs=await fetch(f);if(!rs.ok)continue;cnt++;const d=new Uint8Array(await rs.arrayBuffer()),n=enc.encode(f),c=crc(d);
 const h=new DataView(new ArrayBuffer(30));h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint32(14,c,true);h.setUint32(18,d.length,true);h.setUint32(22,d.length,true);h.setUint16(26,n.length,true);parts.push(h.buffer,n,d);
 const e=new DataView(new ArrayBuffer(46));e.setUint32(0,0x02014b50,true);e.setUint16(4,20,true);e.setUint16(6,20,true);e.setUint32(16,c,true);e.setUint32(20,d.length,true);e.setUint32(24,d.length,true);e.setUint16(28,n.length,true);e.setUint32(42,off,true);cen.push(e.buffer,n);off+=30+n.length+d.length}
-const cl=cen.reduce((a,b)=>a+b.byteLength,0),z=new DataView(new ArrayBuffer(22));z.setUint32(0,0x06054b50,true);z.setUint16(8,FILES.length,true);z.setUint16(10,FILES.length,true);z.setUint32(12,cl,true);z.setUint32(16,off,true);
+const cl=cen.reduce((a,b)=>a+b.byteLength,0),z=new DataView(new ArrayBuffer(22));z.setUint32(0,0x06054b50,true);z.setUint16(8,cnt,true);z.setUint16(10,cnt,true);z.setUint32(12,cl,true);z.setUint32(16,off,true);
 const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([...parts,...cen,z.buffer],{type:"application/zip"}));a.download="aveva-telemetry-guide.zip";a.click();$("#zs").textContent="Done"}
 if(typeof document!=="undefined"&&$("#list")){
 $("#chips").innerHTML=["All",...CATS].map((c,i)=>`<button class="chip" aria-pressed="${i===0}" data-c="${i-1}">${c}</button>`).join("");
