@@ -2,8 +2,10 @@
 <title>AVEVA Telemetry Field Engineering Guide (UAE Edition)</title>
 <meta name="description" content="Offline field guide for SCADA engineers in Dubai and the Northern Emirates.">
 <meta name="theme-color" content="#0b0f19"><link rel="manifest" href="manifest.json"><link rel="icon" href="favicon.ico"><link rel="apple-touch-icon" href="icon-192.png">
-<meta property="og:image" content="assets/og-image.png"><link rel="stylesheet" href="style.css"></head><body>
-<header class="top"><h1><span class="dot" id="dot"></span>Telemetry Guide <b>UAE</b></h1><span id="net">online</span></header>
+<meta property="og:image" content="assets/og-image.png"><style>body{background:#0b0f19;color:#f8fafc;font:16px system-ui}.card{border:1px solid #334;border-radius:12px;margin:8px 0;padding:8px}.bd{display:none}.open .bd{display:block}[hidden]{display:none!important}#diag{white-space:pre-wrap;background:#7f1d1d;color:#fff;padding:8px 12px;font:12px monospace;position:relative;z-index:99}</style><link rel="stylesheet" href="style.css"></head><body>
+<div id="diag" hidden></div><noscript><p>JavaScript is required.</p></noscript>
+<div class="stick"><header class="top"><h1><span class="dot" id="dot"></span>Telemetry Guide <b>UAE</b></h1><span id="net">online</span><button id="st" class="ib" aria-label="Search and filter" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><i></i></button></header>
+<div class="sheet" id="drawer" hidden><input id="q" type="search" placeholder="Search tips, hex, DNP3, APN..." aria-label="Search tips" autocomplete="off" spellcheck="false"><div id="chips"></div></div></div>
 <main>
 <section id="v-list"><p id="count"></p><div id="list"></div></section>
 <section id="v-maps" hidden><h2>Wiring diagrams</h2>
@@ -24,6 +26,5 @@
 </main>
 <div id="toast" class="toast" role="status" aria-live="polite">✓ Copied!</div>
 <div class="dock">
-<div class="drawer" id="drawer"><div class="srow"><input id="q" type="search" placeholder="Search tips, hex, DNP3, APN..." aria-label="Search tips" autocomplete="off" spellcheck="false"><button id="ft" aria-expanded="false" aria-controls="chips">Filters</button></div><div id="chips" hidden></div></div>
 <nav class="seg" role="tablist" aria-label="Sections"><button role="tab" data-tab="all" aria-selected="true">All Tips</button><button role="tab" data-tab="maps" aria-selected="false">Pinouts &amp; Maps</button><button role="tab" data-tab="saved" aria-selected="false">Bookmarks</button><button role="tab" data-tab="tools" aria-selected="false">Tools</button></nav></div>
 <script src="script.js"></script></body></html>
