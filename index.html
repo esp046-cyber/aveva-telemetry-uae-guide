@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AVEVA Telemetry Field Engineering Guide (UAE Edition)</title>
+<meta name="description" content="Offline field guide for SCADA engineers in Dubai and the Northern Emirates.">
+<meta name="theme-color" content="#0e1620"><link rel="manifest" href="manifest.json"><link rel="icon" href="favicon.ico"><link rel="apple-touch-icon" href="icon-192.png">
+<meta property="og:image" content="assets/og-image.png"><link rel="stylesheet" href="style.css"></head><body>
+<header><h1>Telemetry Field Guide <small>UAE Edition</small></h1>
+<div id="live" aria-live="polite"><span class="dot"></span><span id="net">online</span></div></header>
+<main>
+<section class="panel"><h2>Site conditions</h2><div class="gauges">
+<label>Ambient °C <input id="amb" type="range" min="20" max="52" value="46"></label>
+<div class="g"><b id="ambv">46</b>°C ambient</div><div class="g"><b id="panv">70</b>°C panel (est.)</div><div class="g" id="derate">Derating: none</div></div></section>
+<section class="panel"><h2>Find a tip</h2>
+<input id="q" type="search" placeholder="Search: DNP3, RS-485, APN, SAT..." aria-label="Search tips">
+<div id="chips"></div><label class="chk"><input type="checkbox" id="fav"> Bookmarked only</label>
+<p id="count"></p><div id="list"></div></section>
+<section class="panel"><h2>Wiring diagrams</h2><img class="dg" src="assets/rs485.svg" alt="RS-485 daisy chain with bias and terminators"><img class="dg" src="assets/loop420.svg" alt="4-20 mA two-wire loop"><p>Deep references: <a href="docs/dnp3-sav5.md">DNP3 SAv5</a>, <a href="docs/mqtt-sparkplug.md">MQTT/Sparkplug B</a>, <a href="docs/dnp3-quick-ref.md">DNP3</a>, <a href="docs/modbus-troubleshooting.md">Modbus</a>, <a href="docs/uae-desc-compliance.md">DESC/NESA</a>.</p></section>
+<section class="panel"><h2>Take this project with you</h2>
+<p>Packs every file in this app into one ZIP. On iPhone, save it to Files, then upload it to GitHub from Safari (see README).</p>
+<button id="zip">Download project ZIP</button> <span id="zs"></span></section>
+</main><script src="script.js"></script></body></html>

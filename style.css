@@ -1,0 +1,15 @@
+:root{--bg:#0e1620;--sf:rgba(255,255,255,.06);--bd:rgba(255,255,255,.14);--tx:#e9eef3;--mu:#9fb0bf;--am:#e8a33d;--ok:#5fc59a}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:radial-gradient(circle at 80% -10%,#25384c,var(--bg) 55%) fixed;color:var(--tx);font:16px/1.5 "Segoe UI",system-ui,sans-serif;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:2px solid var(--am)}
+h1{font-size:1.15rem;margin:0}h1 small{color:var(--am);font-weight:500;margin-left:6px}h2{font-size:1rem;margin:0 0 10px;color:var(--am)}
+main{max-width:900px;margin:auto;padding:12px}.panel{background:var(--sf);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--bd);border-radius:10px;padding:14px;margin-bottom:14px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ok);margin-right:6px}.off .dot{background:var(--am)}
+.gauges{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}.gauges label{grid-column:1/-1}.g{border:1px solid var(--bd);border-radius:6px;padding:8px}.g b{font-size:1.6rem}
+input[type=range]{width:100%;min-height:44px}input[type=search]{width:100%;min-height:48px;padding:0 12px;border-radius:8px;border:1px solid var(--bd);background:#0a1119;color:var(--tx);font-size:1rem}
+#chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.chip,button{min-height:44px;padding:0 14px;border-radius:8px;border:1px solid var(--bd);background:transparent;color:var(--tx);font:inherit;cursor:pointer}
+.chip[aria-pressed=true],button#zip{background:var(--am);color:#1b1305;border-color:var(--am);font-weight:600}
+.chk{display:flex;gap:8px;align-items:center;min-height:44px}.tip{border-left:4px solid var(--am);background:var(--sf);padding:10px 12px;margin:10px 0;border-radius:0 8px 8px 0}
+.tip h3{margin:0 0 4px;font-size:1rem}.tip .c{color:var(--mu);font-size:.85rem}.tip pre{background:#0a1119;padding:8px;border-radius:6px;overflow-x:auto;margin:6px 0 0}.star{float:right;min-width:44px}
+:focus-visible{outline:3px solid var(--am);outline-offset:2px}
+.dg{width:100%;height:auto;border:1px solid var(--bd);border-radius:8px;margin:6px 0}a{color:var(--am)}

@@ -1,0 +1,1 @@
+{"name":"aveva-telemetry-field-guide-uae","version":"1.0.0","private":true,"description":"Static offline PWA","scripts":{"start":"npx serve .","test":"open tests/app.test.js in a browser console"},"license":"MIT"}
