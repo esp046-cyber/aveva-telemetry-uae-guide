@@ -64,3 +64,11 @@ input[type=range]{padding:0}.pair{display:flex;gap:8px;margin:12px 0}.pair butto
 .refs .rcard{display:flex;align-items:center;gap:12px;min-height:60px}.rcard span{flex:1}.rcard b{display:block}.rcard small{display:block;color:var(--mu);font-weight:400}
 .fi,.cv{flex:none;width:24px;height:24px;fill:none;stroke:var(--cy);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.cv{stroke:var(--mu);width:20px;height:20px}
 .empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 24px;color:var(--mu)}.empty svg{width:64px;height:64px;fill:none;stroke:var(--cy);stroke-width:1.6;stroke-linejoin:round;margin-bottom:12px}.empty h3{color:var(--tx);margin:0 0 6px}.empty p{margin:0;max-width:280px}
+
+.modal-content table{display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-collapse:collapse;white-space:nowrap}
+.modal-content th{background:rgba(255,255,255,.05);text-align:left}.modal-content th,.modal-content td{padding:8px 12px;border:1px solid rgba(255,255,255,.1)}
+.card.open.g-geo,.card.open.g-cell{border-left:3px solid #38bdf8}
+.card.open{border-left-width:3px}.card.open.g-dnp3{border-left-color:#06b6d4}.card.open.g-modbus{border-left-color:#f59e0b}.card.open.g-sec{border-left-color:#f43f5e}
+mark.highlight{background:rgba(245,158,11,.38);color:inherit;border-radius:3px;padding:0 2px}
+.sh{min-height:44px;padding:0 14px;margin:10px 0 0 8px;border-radius:10px;border:1px solid var(--bd);background:rgba(30,41,59,.65);font-size:.8rem;font-weight:600}
+.dot{background:var(--em)}.off .dot{background:#f97316;box-shadow:0 0 8px #f97316}
