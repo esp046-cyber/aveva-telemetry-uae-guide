@@ -55,3 +55,12 @@ input[type=range]{padding:0}.pair{display:flex;gap:8px;margin:12px 0}.pair butto
 .modal-content h2,.modal-content h3,.modal-content h4{color:var(--tx);margin:18px 0 8px}.modal-content code{font:.82rem var(--mono);color:#38bdf8;background:#090d16;padding:1px 5px;border-radius:5px}
 .modal-content pre{background:#090d16;border:1px solid var(--bd);border-radius:10px;padding:10px;overflow-x:auto;font:.8rem var(--mono)}.modal-content blockquote{margin:8px 0;padding:4px 12px;border-left:3px solid var(--am);color:#e2e8f0;background:rgba(245,158,11,.08)}
 .modal-content table{font:.78rem var(--mono)}
+
+.card,.glass,.sheet{background:rgba(15,23,42,.72);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.12)}
+.rg{display:flex;align-items:center;gap:10px;padding:10px 12px;margin:8px 0;border-radius:12px;background:rgba(30,41,59,.5);border:1px solid var(--bd);border-top-color:rgba(255,255,255,.12)}
+.rl{flex:1;min-width:0}.rl b{display:block;font-size:.92rem}.rl small{display:block;color:var(--mu);font:.75rem var(--mono)}
+.fcp{flex:none;padding:3px 9px;border-radius:999px;font:700 .72rem var(--mono);color:#fbbf24;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.3)}
+.rc.ic{flex:none;width:44px;height:44px;min-height:44px;padding:0;margin:0;display:grid;place-items:center}.ic svg{width:20px;height:20px;fill:none;stroke:var(--tx);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.refs .rcard{display:flex;align-items:center;gap:12px;min-height:60px}.rcard span{flex:1}.rcard b{display:block}.rcard small{display:block;color:var(--mu);font-weight:400}
+.fi,.cv{flex:none;width:24px;height:24px;fill:none;stroke:var(--cy);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.cv{stroke:var(--mu);width:20px;height:20px}
+.empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 24px;color:var(--mu)}.empty svg{width:64px;height:64px;fill:none;stroke:var(--cy);stroke-width:1.6;stroke-linejoin:round;margin-bottom:12px}.empty h3{color:var(--tx);margin:0 0 6px}.empty p{margin:0;max-width:280px}
